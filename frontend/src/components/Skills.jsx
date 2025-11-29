@@ -24,7 +24,7 @@ const domainKnowledge = ["Agricultural Systems", "Livestock Nutrition", "Crop Ma
                 <p className="leading-relaxed text-lg text-gray-700 flex-1 pl-15">
                         I bring a diverse set of technical and domain-specific skills to solve complex problems.
                 </p>
-                <div className='flex justify-start gap-4'>
+                <div className='flex flex-wrap justify-start gap-2'>
                     <div className="flex flex-wrap gap-2 p-4">
                         {technicalSkills.map((tech, index) => (
                             <Button key={index} className="px-4">{tech}</Button>
