@@ -91,18 +91,18 @@ const projects = [
 
 export default function Project() {
   return (
-    <section id= "project" className="min-h-screen bg-white py-5 px-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <section id="project" className="min-h-2/5 min-w-full bg-white py-12 sm:py-16 lg:py-4 px-4 sm:px-6 lg:px-8 ">
+      {/* <div className="max-w-7xl mx-auto"> */}
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
           <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
-            <h1 className="text-4xl font-bold text-gray-900 text-center">Project</h1>
+            <h1 className="text-4xl font-bold text-gray-900 text-center">Projects</h1>
           </div>
 
           <p className="px-8 py-6 text-lg font-serif font-light">
             Below are some of my notable projects that demonstrate my expertise...
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 pb-8">
             {projects.map((p) => (
               <ProjectCard
                 key={p.id}
@@ -113,7 +113,7 @@ export default function Project() {
             ))}
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </section>
   );
 }

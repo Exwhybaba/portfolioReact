@@ -5,8 +5,8 @@ function Contacts() {
   const [state, handleSubmit] = useForm("mvgjngbw"); // Your form ID
 
   return (
-    <section id= "contact" className="min-h-screen bg-white py-10 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id= "contact" className="min-h-11/12 bg-grey">
+      <div className="w-full py-12 sm:py-16 lg:py-4 px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
           <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
             <h1 className="text-4xl font-bold text-gray-900 text-center">Contact</h1>

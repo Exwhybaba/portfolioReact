@@ -37,7 +37,7 @@ export default function TitleMe() {
   }, []);
 
   return (
-    <section className="relative min-h-120 bg-sky-900 text-white overflow-hidden flex flex-col justify-center items-center px-6">
+    <section className="relative min-h-2/5 w-full bg-sky-900 text-white overflow-hidden flex flex-col justify-center items-center">
       
       {/* Falling Code Rain */}
       {fallingCode.map(code => (
@@ -54,7 +54,7 @@ export default function TitleMe() {
         </div>
       ))}
 
-      <div className="relative z-10 text-center py-30">
+      <div className="relative z-10 text-center py-30 sm:py-30 lg:py-45">
 
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight">Seye Daniel Oyelayo</h1>
         <p className="mt-4 text-xl md:text-2xl text-sky-200 font-light">

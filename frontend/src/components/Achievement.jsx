@@ -59,8 +59,8 @@ export default function Achievement() {
   }, [api, isHovered])
   
   return (
-    <section id= "achievement" className="min-h-screen bg-white py-5 px-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <section id= "achievement" className="min-h-11/12 bg-grey">
+      <div className="w-full py-12 sm:py-16 lg:py-12 px-4 sm:px-6 lg:px-6">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
           <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
             <h1 className="text-4xl font-bold text-gray-900 text-center">Achievements</h1>
@@ -81,11 +81,11 @@ export default function Achievement() {
             ))}
           </div>
           <div>
-            <h1 className="text-center font-bold py-4 text-xl">Climate Challenge Award Gallery</h1>
+            <h1 className="text-center font-bold py-3 text-xl">Climate Challenge Award Gallery</h1>
 
             <div className="flex justify-center items-center w-full">
                 <Carousel 
-                    className="w-full max-w-4xl"
+                    className="w-full max-w-7xl h-screen max-h-7xl"
                     setApi={setApi}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
@@ -93,13 +93,13 @@ export default function Achievement() {
                     <CarouselContent>
                         {['climate2.jpg', 'climate4.jpg', 'climate5.jpg', 'climate8.jpg', 'climate13.jpg', 'climate16.jpg'].map((imageName, index) => (
                             <CarouselItem key={index}>
-                                <div className="p-1">
+                                <div className="p-2">
                                     <Card>
                                         <CardContent className="flex items-center justify-center p-6">
                                             <img 
                                                 src={`/images/${imageName}`} 
                                                 alt={`Slide ${index + 1}`}
-                                                className="w-full h-[400px] object-cover rounded-md"
+                                                className="w-full h-[600px] object-cover rounded-md"
                                             />
                                         </CardContent>
                                     </Card>

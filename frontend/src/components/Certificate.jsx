@@ -14,19 +14,19 @@ export default function Certificate() {
 
   // List all your certificate filenames here - update with your actual files
   const certificates = [
-    '../certificate/agentic_AI.png',
-    '../certificate/AI6_Cohort8_Certificate (1)_page-0001.jpg',
-    '../certificate/Associate_dataScientist_page-0001.jpg',
-    '../certificate/certificate_Rag_page-0001.jpg',
-    '../certificate/data analysis udacity certificate_page-0001.jpg',
-    '../certificate/DataCamp_certificate.png',
-    '../certificate/docker certificate_page-0001.jpg',
-    '../certificate/hypothesis_testing_page-0001.jpg',
-    "../certificate/Image_modeling_keras_page-0001.jpg",
-    "../certificate/python certificate.png",
-    "../certificate/pytouch_certificate_page-0001.jpg",
-    "../certificate/sampling certificate_page-0001.jpg",
-    "../certificate/statistics_page-0001.jpg"
+    'agentic_AI.png',
+    'AI6_Cohort8_Certificate (1)_page-0001.jpg',
+    'Associate_dataScientist_page-0001.jpg',
+    'certificate_Rag_page-0001.jpg',
+    'data analysis udacity certificate_page-0001.jpg',
+    'DataCamp_certificate.png',
+    'docker certificate_page-0001.jpg',
+    'hypothesis_testing_page-0001.jpg',
+    "Image_modeling_keras_page-0001.jpg",
+    "python certificate.png",
+    "pytouch_certificate_page-0001.jpg",
+    "sampling certificate_page-0001.jpg",
+    "statistics_page-0001.jpg"
   ]
 
   React.useEffect(() => {
@@ -42,8 +42,8 @@ export default function Certificate() {
   }, [api, isHovered])
 
   return (
-    <section id="certificate" className="min-h-screen bg-white py-5 px-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <section id="certificate" className="min-h-11/12 bg-white">
+      <div className="w-full py-12 sm:py-16 lg:py-6 px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
           <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
             <h1 className="text-4xl font-bold text-gray-900 text-center">Certifications</h1>
@@ -56,7 +56,7 @@ export default function Certificate() {
           <div className="pb-8">
             <h1 className="text-center font-bold py-4 text-xl">Certificate Gallery</h1>
 
-            <div className="flex justify-center items-center w-full">
+            <div className="flex justify-center items-center w-full px-8">
               <Carousel 
                 className="w-full max-w-4xl"
                 setApi={setApi}
