@@ -83,9 +83,9 @@ export default function Achievement() {
           <div>
             <h1 className="text-center font-bold py-3 text-xl">Climate Challenge Award Gallery</h1>
 
-            <div className="flex justify-center items-center w-full">
+            <div className="flex justify-center items-center w-full px-4 pb-8">
                 <Carousel 
-                    className="w-full max-w-7xl h-screen max-h-7xl"
+                    className="w-full max-w-7xl"
                     setApi={setApi}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
@@ -95,11 +95,11 @@ export default function Achievement() {
                             <CarouselItem key={index}>
                                 <div className="p-2">
                                     <Card>
-                                        <CardContent className="flex items-center justify-center p-6">
+                                        <CardContent className="flex items-center justify-center p-2 sm:p-4 md:p-6">
                                             <img 
                                                 src={`/images/${imageName}`} 
                                                 alt={`Slide ${index + 1}`}
-                                                className="w-full h-[600px] object-cover rounded-md"
+                                                className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] object-cover rounded-md"
                                             />
                                         </CardContent>
                                     </Card>
@@ -107,8 +107,8 @@ export default function Achievement() {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
                 </Carousel>
             </div>
           </div>

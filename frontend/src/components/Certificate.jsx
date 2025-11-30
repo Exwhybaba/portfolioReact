@@ -56,7 +56,7 @@ export default function Certificate() {
           <div className="pb-8">
             <h1 className="text-center font-bold py-4 text-xl">Certificate Gallery</h1>
 
-            <div className="flex justify-center items-center w-full px-8">
+            <div className="flex justify-center items-center w-full px-4 pb-8">
               <Carousel 
                 className="w-full max-w-4xl"
                 setApi={setApi}
@@ -66,13 +66,13 @@ export default function Certificate() {
                 <CarouselContent>
                   {certificates.map((certName, index) => (
                     <CarouselItem key={index}>
-                      <div className="p-1">
+                      <div className="p-2">
                         <Card>
-                          <CardContent className="flex items-center justify-center p-6">
+                          <CardContent className="flex items-center justify-center p-2 sm:p-4 md:p-6">
                             <img 
                               src={`/certificate/${certName}`} 
                               alt={`Certificate ${index + 1}`}
-                              className="w-full h-[400px] object-contain rounded-md"
+                              className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-contain rounded-md"
                               onError={(e) => {
                                 console.log(`Failed to load: /certificate/${certName}`)
                                 e.target.src = 'https://via.placeholder.com/400x400?text=Certificate+Not+Found'
@@ -84,8 +84,8 @@ export default function Certificate() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex" />
               </Carousel>
             </div>
           </div>
