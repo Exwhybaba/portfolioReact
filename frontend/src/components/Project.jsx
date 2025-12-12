@@ -91,29 +91,42 @@ const projects = [
 
 export default function Project() {
   return (
-    <section id="project" className="min-h-2/5 min-w-full bg-white py-12 sm:py-16 lg:py-4 px-4 sm:px-6 lg:px-8 ">
-      {/* <div className="max-w-7xl mx-auto"> */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
-          <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
-            <h1 className="text-4xl font-bold text-gray-900 text-center">Projects</h1>
-          </div>
-
-          <p className="px-8 py-6 text-lg font-serif font-light">
-            Below are some of my notable projects that demonstrate my expertise...
+    <section id="project" className="min-h-screen w-full bg-gradient-to-b from-white to-slate-50 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Portfolio</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">My Projects</h2>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            Showcasing real-world solutions in data science, machine learning, and web development
           </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 pb-8">
-            {projects.map((p) => (
-              <ProjectCard
-                key={p.id}
-                title={p.title}
-                description={p.description}
-                actions={p.actions}
-              />
-            ))}
-          </div>
         </div>
-      {/* </div> */}
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {projects.map((p) => (
+            <ProjectCard
+              key={p.id}
+              title={p.title}
+              description={p.description}
+              actions={p.actions}
+            />
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-slate-600 text-lg mb-6">Want to see more of my work?</p>
+          <a
+            href="https://github.com/Exwhybaba"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105"
+          >
+            Visit My GitHub
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

@@ -16,7 +16,9 @@ import {
   TrendingUp,
   Award,
   Trophy,
-  Target
+  Target,
+  ExternalLink,
+  Code2
 } from "lucide-react";
 
 const projectIcons = {
@@ -32,41 +34,45 @@ const projectIcons = {
 };
 
  function ProjectCard({ title, description, actions = [] }) {
-    const Icon = projectIcons[title] || Eye;
+    const Icon = projectIcons[title] || Code2;
     
     return (
-        <Card className="w-full hover:shadow-xl transition-all duration-300 border-gray-200 hover:border-sky-300 group">
-            <CardHeader className="pb-4">
-                <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-gradient-to-br from-sky-400 to-blue-500 flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
-                        <Icon className="h-6 w-6 text-white" />
+        <Card className="w-full overflow-hidden bg-white border-slate-200 hover:border-emerald-400 hover:shadow-xl transition-all duration-300 group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-50 to-sky-50 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <CardHeader className="pb-4 relative z-10">
+                <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                        <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                        <CardTitle className="text-xl font-semibold tracking-tight text-gray-900 group-hover:text-sky-600 transition-colors">
+                        <CardTitle className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
                             {title}
                         </CardTitle>
                     </div>
                 </div>
 
                 {description && (
-                    <CardDescription className="mt-3 text-sm text-gray-600 leading-relaxed">
+                    <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-3">
                         {description}
                     </CardDescription>
                 )}
-
-                <div className="mt-4 h-px bg-gradient-to-r from-sky-200 via-sky-300 to-transparent"></div>
             </CardHeader>
 
-        <CardFooter className="flex justify-start flex-wrap gap-2 pt-2">
+        <CardFooter className="flex justify-start flex-wrap gap-2 pt-4 relative z-10 border-t border-slate-100 bg-gradient-to-b from-white to-slate-50/30">
             {actions.map((act, i) => (
             <Button
                 key={i}
                 variant={act.variant ?? "default"}
                 onClick={act.onClick}
                 size={act.size ?? "sm"}
-                className={act.variant === "ghost" ? "text-xs font-medium text-gray-600 hover:text-sky-600 hover:bg-sky-50" : "bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white shadow-sm"}
+                className={act.variant === "ghost" 
+                  ? "text-xs font-medium text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300" 
+                  : "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-md hover:shadow-lg flex items-center gap-2"
+                }
             >
                 {act.label}
+                {act.label === "View Project" && <ExternalLink className="w-3 h-3" />}
             </Button>
             ))}
         </CardFooter>

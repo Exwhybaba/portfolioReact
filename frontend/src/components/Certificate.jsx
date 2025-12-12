@@ -7,10 +7,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { Award, CheckCircle } from "lucide-react"
 
 export default function Certificate() {
   const [api, setApi] = React.useState()
   const [isHovered, setIsHovered] = React.useState(false)
+
+  const handleImageLoad = (e) => {
+    const img = e.target;
+    try {
+      if (img.naturalHeight > img.naturalWidth) {
+        img.style.objectFit = 'contain';
+        img.style.objectPosition = 'center';
+      } else {
+        img.style.objectFit = 'cover';
+        img.style.objectPosition = 'center';
+      }
+    } catch {
+      // ignore image read errors
+    }
+  };
 
   // List all your certificate filenames here - update with your actual files
   const certificates = [
@@ -42,54 +58,88 @@ export default function Certificate() {
   }, [api, isHovered])
 
   return (
-    <section id="certificate" className="min-h-11/12 bg-white">
-      <div className="w-full py-12 sm:py-16 lg:py-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
-          <div className="bg-gradient-to-r from-sky-50 to-sky-200 p-8">
-            <h1 className="text-4xl font-bold text-gray-900 text-center">Certifications</h1>
-          </div>
-
-          <p className="px-8 py-6 text-lg font-serif font-light">
-            Here are some of the certifications I've earned through professional courses and trainings. They reflect my commitment to continuous learning and expertise in data science and machine learning.
+    <section id="certificate" className="min-h-screen bg-gradient-to-b from-white to-slate-50 py-16 sm:py-20 lg:py-24">
+      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Education</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">Certifications</h2>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            Professional certifications showcasing continuous learning in data science and machine learning
           </p>
-          
-          <div className="pb-8">
-            <h1 className="text-center font-bold py-4 text-xl">Certificate Gallery</h1>
+        </div>
 
-            <div className="flex justify-center items-center w-full px-4 pb-8">
-              <Carousel 
-                className="w-full max-w-4xl"
-                setApi={setApi}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <CarouselContent>
-                  {certificates.map((certName, index) => (
-                    <CarouselItem key={index}>
-                      <div className="p-2">
-                        <Card>
-                          <CardContent className="flex items-center justify-center p-2 sm:p-4 md:p-6">
-                            <img 
-                              src={`/certificate/${certName}`} 
-                              alt={`Certificate ${index + 1}`}
-                              className="w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] object-contain rounded-md"
-                              onError={(e) => {
-                                console.log(`Failed to load: /certificate/${certName}`)
-                                e.target.src = 'https://via.placeholder.com/400x400?text=Certificate+Not+Found'
-                              }}
-                            />
-                          </CardContent>
-                        </Card>
+        {/* Certificate Gallery Section */}
+        <div className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-12 shadow-sm">
+          <h3 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+            <Award className="w-7 h-7 text-emerald-600" />
+            Certificate Gallery
+          </h3>
+          <p className="text-slate-600 mb-8">Swipe or click to explore my professional certifications</p>
+
+          <div className="flex justify-center items-center w-full">
+            <Carousel 
+              className="w-full"
+              setApi={setApi}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <CarouselContent>
+                {certificates.map((certName, index) => (
+                  <CarouselItem key={index} className="md:basis-full lg:basis-full">
+                    <div className="p-1 md:p-2">
+                      <div className="relative group overflow-hidden rounded-xl">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-sky-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
+                        <img 
+                          src={`/certificate/${certName}`} 
+                          alt={`Certificate ${index + 1}`}
+                          className="w-full h-[450px] md:h-[500px] object-cover rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-lg"
+                          onLoad={handleImageLoad}
+                          loading="lazy"
+                          onError={(e) => {
+                            e.target.src = 'https://via.placeholder.com/400x300?text=Certificate+Not+Found'
+                          }}
+                        />
                       </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex" />
-                <CarouselNext className="hidden sm:flex" />
-              </Carousel>
-            </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex border-slate-300 hover:border-emerald-400 text-slate-900 hover:text-emerald-600" />
+              <CarouselNext className="hidden sm:flex border-slate-300 hover:border-emerald-400 text-slate-900 hover:text-emerald-600" />
+            </Carousel>
           </div>
-          
+        </div>
+
+        {/* Certification Summary */}
+        <div className="mt-16 grid md:grid-cols-2 gap-8">
+          <div className="bg-gradient-to-br from-emerald-50 to-sky-50 rounded-2xl p-8 border border-emerald-200">
+            <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-emerald-600" />
+              Technical Certifications
+            </h4>
+            <ul className="space-y-3">
+              <li className="text-slate-700">Python & Data Science Specialization</li>
+              <li className="text-slate-700">Machine Learning & Deep Learning with TensorFlow/PyTorch</li>
+              <li className="text-slate-700">Data Analysis & Visualization</li>
+              <li className="text-slate-700">Docker & Containerization</li>
+              <li className="text-slate-700">Advanced NLP & Agentic AI</li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-sky-50 to-cyan-50 rounded-2xl p-8 border border-sky-200">
+            <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-sky-600" />
+              Domain Expertise
+            </h4>
+            <ul className="space-y-3">
+              <li className="text-slate-700">Statistical Modeling & Hypothesis Testing</li>
+              <li className="text-slate-700">Image Processing & Computer Vision</li>
+              <li className="text-slate-700">Agricultural Technology Applications</li>
+              <li className="text-slate-700">Business Analytics & Insights</li>
+              <li className="text-slate-700">Continuous Learning & Development</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
