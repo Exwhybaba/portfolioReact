@@ -85,8 +85,8 @@ const skillCategories = [
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Expertise</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Skills & Technologies</h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Skills & Technologies</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Proficient across modern tech stack and domain-specific expertise
           </p>
         </div>
@@ -123,7 +123,7 @@ const skillCategories = [
 
         {/* All Technical Skills */}
         <div className="bg-gradient-to-br from-slate-50 to-emerald-50 rounded-2xl p-8 border border-slate-200 mb-12">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">All Technical Skills</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-6">All Technical Skills</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {technicalSkills.map((tech, index) => (
               <div 
@@ -140,7 +140,7 @@ const skillCategories = [
 
         {/* Domain Knowledge */}
         <div className="bg-gradient-to-br from-emerald-50 to-sky-50 rounded-2xl p-8 border border-emerald-200">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">Domain Knowledge</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-6">Domain Knowledge</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {domainKnowledge.map((item, index) => (
               <div 

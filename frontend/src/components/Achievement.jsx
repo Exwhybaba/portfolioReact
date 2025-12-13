@@ -57,8 +57,8 @@ export default function Achievement() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Recognition</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Achievements & Awards</h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Achievements & Awards</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Recognized for innovative solutions in hackathons and competitive challenges
           </p>
         </div>
@@ -77,23 +77,23 @@ export default function Achievement() {
 
         {/* Prizes & Awards Section */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">Prizes & Recognition</h3>
+          <h3 className="text-xl font-bold text-slate-900 text-center mb-8">Prizes & Recognition</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-emerald-50 to-sky-50 rounded-2xl p-8 border border-emerald-200 text-center hover:shadow-lg transition-shadow">
               <Trophy className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
-              <p className="text-3xl font-bold text-slate-900 mb-2">3+</p>
+              <p className="text-2xl font-bold text-slate-900 mb-2">3+</p>
               <p className="text-slate-600 font-medium">Hackathon Awards</p>
             </div>
             
             <div className="bg-gradient-to-br from-sky-50 to-cyan-50 rounded-2xl p-8 border border-sky-200 text-center hover:shadow-lg transition-shadow">
               <Zap className="w-8 h-8 text-sky-600 mx-auto mb-3" />
-              <p className="text-3xl font-bold text-slate-900 mb-2">$50K+</p>
+              <p className="text-2xl font-bold text-slate-900 mb-2">$50K+</p>
               <p className="text-slate-600 font-medium">Prize Money & Credits</p>
             </div>
           
             <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-8 border border-violet-200 text-center hover:shadow-lg transition-shadow">
               <Target className="w-8 h-8 text-violet-600 mx-auto mb-3" />
-              <p className="text-3xl font-bold text-slate-900 mb-2">100%</p>
+              <p className="text-2xl font-bold text-slate-900 mb-2">100%</p>
               <p className="text-slate-600 font-medium">Project Success Rate</p>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function Achievement() {
 
         {/* Award-Winning Portfolio Gallery */}
         <div className="mt-20">
-          <h3 className="text-3xl font-bold text-slate-900 text-center mb-4">Award-Winning Projects</h3>
+          <h3 className="text-2xl font-bold text-slate-900 text-center mb-4">Award-Winning Projects</h3>
           <p className="text-lg text-slate-600 text-center mb-10 max-w-2xl mx-auto">
             Showcasing award-winning solutions from the Climate Risk Challenge
           </p>

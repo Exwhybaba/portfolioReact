@@ -63,15 +63,15 @@ export default function Certificate() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Education</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Certifications</h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Certifications</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Professional certifications showcasing continuous learning in data science and machine learning
           </p>
         </div>
 
         {/* Certificate Gallery Section */}
         <div className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-12 shadow-sm"> 
-          <h3 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <h3 className="text-xl font-bold text-slate-900 mb-2 flex items-center gap-3">
             <Award className="w-7 h-7 text-emerald-600" />
             Certificate Gallery
           </h3>

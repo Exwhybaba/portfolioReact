@@ -70,14 +70,14 @@ export default function TitleMe() {
           </span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4 bg-gradient-to-r from-emerald-300 via-sky-200 to-cyan-300 bg-clip-text text-transparent">
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-emerald-300 via-sky-200 to-cyan-300 bg-clip-text text-transparent">
           Seye Daniel Oyelayo
         </h1>
-        <p className="mt-4 text-xl sm:text-2xl lg:text-3xl text-sky-200 font-light mb-8">
+        <p className="mt-4 text-lg sm:text-2xl text-sky-200 font-light mb-8">
           Data Scientist & ML Engineer
         </p>
         
-        <p className="max-w-2xl mx-auto text-base sm:text-lg text-sky-100 mb-12 leading-relaxed">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg text-sky-100 mb-12 leading-relaxed">
           Transforming complex data into intelligent solutions. Specialized in AI, Machine Learning, and building scalable systems.
         </p>
 

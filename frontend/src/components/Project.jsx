@@ -102,8 +102,8 @@ export default function Project() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Portfolio</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">My Projects</h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">My Projects</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Showcasing real-world solutions in data science, machine learning, and web development
           </p>
         </div>

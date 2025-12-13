@@ -63,7 +63,7 @@ function AboutMe() {
                     </div>
                     <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
                   </div>
-                  <p className="text-slate-600 text-sm leading-relaxed group-hover:text-emerald-50 transition-colors pl-10 sm:pl-12">
+                  <p className="text-slate-600 text-sm leading-relaxed group-hover:text-emerald-50 transition-colors pl-10">
                     {expertise.description}
                   </p>
                 </div>
