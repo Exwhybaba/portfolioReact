@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft, Tag, Trash2, Edit, MessageSquare, ThumbsUp, Heart } from 'lucide-react';
 import LoadingScreen from './LoadingScreen';
+import { API_URL } from '../config';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export default function BlogPost() {
   const [userReactions, setUserReactions] = useState({ likes: false, loves: false });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/posts/${id}`)
+    fetch(`${API_URL}/api/posts/${id}`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Post not found');
@@ -66,7 +67,7 @@ export default function BlogPost() {
     if (!password) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/posts/${id}`, {
+      const res = await fetch(`${API_URL}/api/posts/${id}`, {
         method: 'DELETE',
         headers: {
           'x-admin-password': password
@@ -90,7 +91,7 @@ export default function BlogPost() {
 
     setSubmittingComment(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/posts/${id}/comments`, {
+      const res = await fetch(`${API_URL}/api/posts/${id}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -100,7 +101,7 @@ export default function BlogPost() {
 
       if (res.ok) {
         // Re-fetch the post to get the updated comments list
-        const postRes = await fetch(`http://localhost:5000/api/posts/${id}`);
+        const postRes = await fetch(`${API_URL}/api/posts/${id}`);
         const updatedPost = await postRes.json();
         setPost(updatedPost);
         setCommentForm({ author: '', content: '' });
@@ -128,7 +129,7 @@ export default function BlogPost() {
     }));
 
     try {
-      await fetch(`http://localhost:5000/api/posts/${id}/${type}`, {
+      await fetch(`${API_URL}/api/posts/${id}/${type}`, {
         method: isActive ? 'DELETE' : 'PUT'
       });
     } catch (err) {

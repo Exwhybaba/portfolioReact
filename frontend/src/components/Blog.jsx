@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import BlogCard from './BlogCard';
+import { API_URL } from '../config';
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts')
+    fetch(`${API_URL}/api/posts`)
       .then(res => res.json())
       .then(data => {
         setPosts(data);

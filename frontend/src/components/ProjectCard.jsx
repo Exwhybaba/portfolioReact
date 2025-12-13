@@ -49,7 +49,7 @@ const projectIcons = {
             
             <CardHeader className="pb-4 relative z-10">
                 {image ? (
-                    <CardTitle className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                    <CardTitle className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors">
                         {title}
                     </CardTitle>
                 ) : (
@@ -58,7 +58,7 @@ const projectIcons = {
                             <Icon className="h-7 w-7 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <CardTitle className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                            <CardTitle className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors">
                                 {title}
                             </CardTitle>
                         </div>
@@ -66,7 +66,7 @@ const projectIcons = {
                 )}
 
                 {description && (
-                    <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-3">
+                    <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed">
                         {description}
                     </CardDescription>
                 )}

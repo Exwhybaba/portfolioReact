@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../config';
 
 export default function EditPost() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ export default function EditPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/posts/${id}`)
+    fetch(`${API_URL}/api/posts/${id}`)
       .then(res => res.json())
       .then(data => {
         setFormData({
@@ -37,7 +38,7 @@ export default function EditPost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+      const response = await fetch(`${API_URL}/api/posts/${id}`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',

@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Calendar, User, MessageSquare, ArrowRight, Folder, Plus } from 'lucide-react';
+import { API_URL } from '../config';
 
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts')
+    fetch(`${API_URL}/api/posts`)
       .then(res => res.json())
       .then(data => {
         setPosts(data);
@@ -31,21 +33,24 @@ export default function BlogPage() {
     }
   };
 
-  const categories = [
-    { name: "Agritech", count: 1 },
-    { name: "Business Development", count: 1 },
-    { name: "Data Science & Analytics", count: 1 },
-    { name: "Deep Learning", count: 2 },
-    { name: "Machine Learning", count: 2 },
-    { name: "Technology", count: 3 },
-    { name: "Web development", count: 1 },
-  ];
+  // Calculate category counts dynamically from posts
+  const categories = Object.values(posts.reduce((acc, post) => {
+    const cat = post.category;
+    if (!cat) return acc;
+    if (!acc[cat]) acc[cat] = { name: cat, count: 0 };
+    acc[cat].count++;
+    return acc;
+  }, {})).sort((a, b) => a.name.localeCompare(b.name));
 
   const tags = [
     "Analysis", "agritech", "Business", "Dashboard", "data analytics", 
     "data science", "deep learning", "innovation", "machine learning", 
     "Technology", "Visualization", "Web development"
   ];
+
+  const filteredPosts = selectedCategory 
+    ? posts.filter(post => post.category === selectedCategory)
+    : posts;
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-16">
@@ -79,8 +84,8 @@ export default function BlogPage() {
               <div className="flex justify-center py-20">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
               </div>
-            ) : posts.length > 0 ? (
-              posts.map(post => (
+            ) : filteredPosts.length > 0 ? (
+              filteredPosts.map(post => (
                 <article key={post._id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-10 hover:shadow-md transition-shadow duration-300">
                   <div className="relative h-64 sm:h-80 overflow-hidden">
                     <img 
@@ -130,7 +135,7 @@ export default function BlogPage() {
                 </article>
               ))
             ) : (
-              <div className="text-center py-10 text-slate-500">No posts found.</div>
+              <div className="text-center py-10 text-slate-500">No posts found{selectedCategory ? ` in ${selectedCategory}` : ''}.</div>
             )}
           </div>
 
@@ -181,8 +186,21 @@ export default function BlogPage() {
             <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
               <h3 className="text-lg font-bold text-slate-900 mb-4 border-l-4 border-emerald-500 pl-3">Categories</h3>
               <ul className="space-y-2">
+                <li 
+                  onClick={() => setSelectedCategory(null)}
+                  className={`flex justify-between items-center cursor-pointer transition-colors border-b border-slate-50 pb-2 last:border-0 ${!selectedCategory ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600'}`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Folder className="w-4 h-4" />
+                    <span>All Categories</span>
+                  </div>
+                  <span className="text-xs bg-slate-100 px-2 py-1 rounded-full text-slate-500">{posts.length}</span>
+                </li>
                 {categories.map((cat, idx) => (
-                  <li key={idx} className="flex justify-between items-center text-slate-600 hover:text-emerald-600 cursor-pointer transition-colors border-b border-slate-50 pb-2 last:border-0">
+                  <li key={idx} 
+                    onClick={() => setSelectedCategory(cat.name)}
+                    className={`flex justify-between items-center cursor-pointer transition-colors border-b border-slate-50 pb-2 last:border-0 ${selectedCategory === cat.name ? 'text-emerald-600 font-bold' : 'text-slate-600 hover:text-emerald-600'}`}
+                  >
                     <div className="flex items-center gap-2">
                       <Folder className="w-4 h-4" />
                       <span>{cat.name}</span>

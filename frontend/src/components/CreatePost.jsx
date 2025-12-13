@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 export default function CreatePost() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function CreatePost() {
   ]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/posts')
+    fetch(`${API_URL}/api/posts`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -45,7 +46,7 @@ export default function CreatePost() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/posts', {
+      const response = await fetch(`${API_URL}/api/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
