@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header"
 import Home from "./components/Home"
@@ -6,9 +7,14 @@ import CreatePost from "./components/CreatePost"
 import BlogPost from "./components/BlogPost"
 import EditPost from "./components/EditPost"
 import Footer from "./components/Footer"
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
+    <>
+    {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
     <Router>
       <Header/>
       <main>
@@ -30,6 +36,7 @@ function App() {
       </main>
       <Footer/>
     </Router>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Calendar, Clock, User, ArrowLeft, Tag, Trash2, Edit } from 'lucide-react';
+import { Calendar, Clock, User, ArrowLeft, Tag, Trash2, Edit, MessageSquare, ThumbsUp, Heart } from 'lucide-react';
+import LoadingScreen from './LoadingScreen';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -8,6 +9,10 @@ export default function BlogPost() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [commentForm, setCommentForm] = useState({ author: '', content: '' });
+  const [submittingComment, setSubmittingComment] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+  const [userReactions, setUserReactions] = useState({ likes: false, loves: false });
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/posts/${id}`)
@@ -26,6 +31,13 @@ export default function BlogPost() {
         setError(err.message);
         setLoading(false);
       });
+  }, [id]);
+
+  useEffect(() => {
+    const savedReactions = localStorage.getItem(`reactions_${id}`);
+    if (savedReactions) {
+      setUserReactions(JSON.parse(savedReactions));
+    }
   }, [id]);
 
   const formatDate = (dateString) => {
@@ -72,6 +84,62 @@ export default function BlogPost() {
     }
   };
 
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!commentForm.author.trim() || !commentForm.content.trim()) return;
+
+    setSubmittingComment(true);
+    try {
+      const res = await fetch(`http://localhost:5000/api/posts/${id}/comments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentForm)
+      });
+
+      if (res.ok) {
+        // Re-fetch the post to get the updated comments list
+        const postRes = await fetch(`http://localhost:5000/api/posts/${id}`);
+        const updatedPost = await postRes.json();
+        setPost(updatedPost);
+        setCommentForm({ author: '', content: '' });
+      } else {
+        alert('Failed to post comment');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error posting comment');
+    } finally {
+      setSubmittingComment(false);
+    }
+  };
+
+  const handleReaction = async (type) => {
+    const isActive = userReactions[type];
+    const newReactions = { ...userReactions, [type]: !isActive };
+    
+    setUserReactions(newReactions);
+    localStorage.setItem(`reactions_${id}`, JSON.stringify(newReactions));
+
+    setPost(prev => ({
+      ...prev,
+      [type]: Math.max(0, (prev[type] || 0) + (isActive ? -1 : 1))
+    }));
+
+    try {
+      await fetch(`http://localhost:5000/api/posts/${id}/${type}`, {
+        method: isActive ? 'DELETE' : 'PUT'
+      });
+    } catch (err) {
+      console.error(`Error updating ${type}`, err);
+    }
+  };
+
+  if (showSplash) {
+    return <LoadingScreen onComplete={() => setShowSplash(false)} />;
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center bg-slate-50 pt-20">
@@ -92,7 +160,13 @@ export default function BlogPost() {
   }
 
   return (
-    <article className="min-h-screen bg-slate-50 pt-24 pb-16">
+    <article className="min-h-screen bg-slate-50 pt-24 pb-16" style={{ animation: 'revealPost 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards' }}>
+      <style>{`
+        @keyframes revealPost {
+          0% { opacity: 0; transform: scale(0.85) translateY(20px); filter: blur(10px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+      `}</style>
       {/* Hero Image Section */}
       <div className="w-full h-[400px] relative mb-12">
         <img 
@@ -179,6 +253,95 @@ export default function BlogPost() {
               </div>
             </div>
           )}
+
+          {/* Reactions Section */}
+          <div className="flex items-center gap-6 mt-8 pt-8 border-t border-slate-100">
+            <button 
+              onClick={() => handleReaction('likes')}
+              className={`flex items-center gap-2 transition-colors group ${userReactions.likes ? 'text-emerald-600' : 'text-slate-600 hover:text-emerald-600'}`}
+            >
+              <div className={`p-2 rounded-full transition-colors ${userReactions.likes ? 'bg-emerald-100' : 'bg-slate-100 group-hover:bg-emerald-100'}`}>
+                <ThumbsUp className={`w-5 h-5 ${userReactions.likes ? 'fill-current' : ''}`} />
+              </div>
+              <span className="font-semibold">{post.likes || 0} Likes</span>
+            </button>
+            
+            <button 
+              onClick={() => handleReaction('loves')}
+              className={`flex items-center gap-2 transition-colors group ${userReactions.loves ? 'text-rose-600' : 'text-slate-600 hover:text-rose-600'}`}
+            >
+              <div className={`p-2 rounded-full transition-colors ${userReactions.loves ? 'bg-rose-100' : 'bg-slate-100 group-hover:bg-rose-100'}`}>
+                <Heart className={`w-5 h-5 ${userReactions.loves ? 'fill-current' : ''}`} />
+              </div>
+              <span className="font-semibold">{post.loves || 0} Loves</span>
+            </button>
+          </div>
+
+          {/* Comments Section */}
+          <div className="mt-16 pt-12 border-t border-slate-200">
+            <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-2">
+              <MessageSquare className="w-6 h-6 text-emerald-600" />
+              Comments ({post.comments?.length || 0})
+            </h3>
+
+            <div className="space-y-8 mb-12">
+              {post.comments?.length > 0 ? (
+                post.comments.map((comment, index) => (
+                  <div key={index} className="bg-slate-50 rounded-xl p-6 border border-slate-100">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">
+                          {comment.author?.charAt(0).toUpperCase() || 'U'}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-slate-900">{comment.author}</h4>
+                          <span className="text-xs text-slate-500">{formatDate(comment.createdAt || new Date())}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-slate-700 leading-relaxed">{comment.content}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-slate-500 italic">No comments yet. Be the first to share your thoughts!</p>
+              )}
+            </div>
+
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+              <h4 className="text-lg font-bold text-slate-900 mb-6">Leave a Comment</h4>
+              <form onSubmit={handleCommentSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={commentForm.author}
+                    onChange={(e) => setCommentForm({...commentForm, author: e.target.value})}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Comment</label>
+                  <textarea 
+                    required
+                    rows="4"
+                    value={commentForm.content}
+                    onChange={(e) => setCommentForm({...commentForm, content: e.target.value})}
+                    className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
+                    placeholder="Share your thoughts..."
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  disabled={submittingComment}
+                  className="px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50"
+                >
+                  {submittingComment ? 'Posting...' : 'Post Comment'}
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </article>
