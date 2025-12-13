@@ -33,24 +33,37 @@ const projectIcons = {
   "Legacy AgriTech Hackathon Finalist": Target,
 };
 
- function ProjectCard({ title, description, actions = [] }) {
+ function ProjectCard({ title, description, actions = [], image }) {
     const Icon = projectIcons[title] || Code2;
     
     return (
         <Card className="w-full overflow-hidden bg-white border-slate-200 hover:border-emerald-400 hover:shadow-xl transition-all duration-300 group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-50 to-sky-50 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {image ? (
+              <div className="w-full h-56 overflow-hidden relative">
+                <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+            ) : (
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-50 to-sky-50 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            )}
             
             <CardHeader className="pb-4 relative z-10">
-                <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                        <Icon className="h-7 w-7 text-white" />
+                {image ? (
+                    <CardTitle className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                        {title}
+                    </CardTitle>
+                ) : (
+                    <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                            <Icon className="h-7 w-7 text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <CardTitle className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                                {title}
+                            </CardTitle>
+                        </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                        <CardTitle className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-2">
-                            {title}
-                        </CardTitle>
-                    </div>
-                </div>
+                )}
 
                 {description && (
                     <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed line-clamp-3">

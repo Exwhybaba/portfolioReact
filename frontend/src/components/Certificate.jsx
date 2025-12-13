@@ -63,14 +63,14 @@ export default function Certificate() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Education</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">Certifications</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Certifications</h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Professional certifications showcasing continuous learning in data science and machine learning
           </p>
         </div>
 
         {/* Certificate Gallery Section */}
-        <div className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-12 shadow-sm">
+        <div className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-12 shadow-sm"> 
           <h3 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
             <Award className="w-7 h-7 text-emerald-600" />
             Certificate Gallery
@@ -86,14 +86,14 @@ export default function Certificate() {
             >
               <CarouselContent>
                 {certificates.map((certName, index) => (
-                  <CarouselItem key={index} className="md:basis-full lg:basis-full">
+                 <CarouselItem key={index} className="md:basis-full lg:basis-full">
                     <div className="p-1 md:p-2">
                       <div className="relative group overflow-hidden rounded-xl">
                         <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-sky-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-lg"></div>
                         <img 
                           src={`/certificate/${certName}`} 
                           alt={`Certificate ${index + 1}`}
-                          className="w-full h-[450px] md:h-[500px] object-cover rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-lg"
+                          className="w-full h-auto aspect-[4/3] max-h-[510px] object-cover rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-lg"
                           onLoad={handleImageLoad}
                           loading="lazy"
                           onError={(e) => {

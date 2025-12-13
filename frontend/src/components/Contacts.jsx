@@ -11,7 +11,7 @@ function Contacts() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Get In Touch</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">Let's Connect</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">Let's Connect</h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             I'm always interested in hearing about new opportunities and collaborations
           </p>

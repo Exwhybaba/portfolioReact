@@ -1,40 +1,35 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header"
-import TitleMe from "./components/TitleMe"
-import AboutMe from "./components/AboutMe"
-import Project from "./components/Project"
-import Achievement from "./components/Achievement"
-import Certificate from "./components/Certificate"
-import Skills from "./components/Skills"
-import Contacts from "./components/Contacts"
+import Home from "./components/Home"
+import BlogPage from "./components/BlogPage"
+import CreatePost from "./components/CreatePost"
+import BlogPost from "./components/BlogPost"
+import EditPost from "./components/EditPost"
+import Footer from "./components/Footer"
 
 function App() {
-  
-
   return (
-    <>
+    <Router>
       <Header/>
       <main>
-        <TitleMe/>
-        <AboutMe/>
-        <Project/>
-        <Achievement/>
-        <Certificate/>
-        <Skills/>
-        <Contacts/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/edit-post/:id" element={<EditPost />} />
+          <Route path="*" element={
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+              <div className="text-center">
+                <h1 className="text-4xl font-bold text-slate-900 mb-4">404</h1>
+                <p className="text-slate-600">Page not found</p>
+              </div>
+            </div>
+          } />
+        </Routes>
       </main>
-      
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-8 border-t border-slate-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-slate-400">
-            Designed & Built with <span className="text-emerald-400">❤</span> by Seye Daniel Oyelayo
-          </p>
-          <p className="text-sm text-slate-500 mt-2">
-            © {new Date().getFullYear()} All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </>
+      <Footer/>
+    </Router>
   )
 }
 

@@ -4,6 +4,7 @@ const projects = [
   {
     id: 1,
     title: "FeedEyes",
+    image: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=800&q=80",
     description:
       "A least-cost feed formulator that helps farmers optimize animal nutrition while minimizing costs. The application provides optimal feed formulations based on available ingredients and nutritional requirements.",
     actions: [
@@ -17,6 +18,7 @@ const projects = [
   {
     id: 2,
     title: "Crop Recommendation System",
+    image: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80",
     description:
       "An intelligent system that recommends suitable crops based on soil characteristics and environmental conditions, helping farmers make informed decisions for optimal yield.",
     actions: [
@@ -32,6 +34,7 @@ const projects = [
   {
     id: 3,
     title: "Crop Monitoring System",
+    image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
     description:
       "A comprehensive system for monitoring crop health and growth using computer vision to identify plant diseases, pests, and nutritional deficiencies.",
     actions: [
@@ -47,6 +50,7 @@ const projects = [
   {
     id: 4,
     title: "Customer Churn Prediction",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     description:
       "Machine learning models to predict and prevent customer churn for service providers, enabling proactive retention strategies.",
     actions: [
@@ -60,6 +64,7 @@ const projects = [
   {
     id: 5,
     title: "Malaria Parasite Detector",
+    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
     description:
       "An AI system for detecting malaria parasites in blood samples to assist in diagnosis, improving accuracy and speed of detection in healthcare settings.",
     actions: [
@@ -75,6 +80,7 @@ const projects = [
   {
     id: 6,
     title: "Bank Customer Transaction Dashboard",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     description:
       "Interactive analytics dashboard for visualizing customer demographics, account details, and transaction patterns to drive insights on banking behavior and support decision‑making.",
     actions: [
@@ -96,20 +102,21 @@ export default function Project() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-4">Portfolio</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">My Projects</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent inline-block">My Projects</h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Showcasing real-world solutions in data science, machine learning, and web development
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {projects.map((p) => (
             <ProjectCard
               key={p.id}
               title={p.title}
               description={p.description}
               actions={p.actions}
+              image={p.image}
             />
           ))}
         </div>
