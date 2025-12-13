@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173",                // Local development
-    "https://seye-oyelayo-portfolio.vercel.app" // Your deployed Vercel URL
+    "https://seye-oyelayo-portfolio.vercel.app", // Your deployed Vercel URL
+    "https://portfolio-react-eta-orcin.vercel.app" // Your Vercel deployment from logs
   ],
   credentials: true
 }));
