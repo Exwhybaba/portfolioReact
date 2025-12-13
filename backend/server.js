@@ -12,12 +12,17 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173",                // Local development
-    "https://portfolio-backend-i72p.onrender.com" // Your deployed Vercel URL
+    "https://seye-oyelayo-portfolio.vercel.app" // Your deployed Vercel URL
   ],
   credentials: true
 }));
 
 app.use(express.json());
+
+// Add this root route to fix "Cannot GET /" 404 errors on the backend
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio_blog')
