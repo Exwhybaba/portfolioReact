@@ -7,7 +7,16 @@ const postRoutes = require('./routes/posts');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",                // Local development
+    "https://portfolio-backend-i72p.onrender.com" // Your deployed Vercel URL
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Connect to MongoDB
