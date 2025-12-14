@@ -3,6 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft, Tag, Trash2, Edit, MessageSquare, ThumbsUp, Heart } from 'lucide-react';
 import LoadingScreen from './LoadingScreen';
 import { API_URL } from '../config';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -244,11 +247,12 @@ export default function BlogPost() {
             </div>
           )}
 
-          {/* HTML Content */}
-          <div 
-            className="prose prose-slate prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-600 prose-a:text-emerald-600 hover:prose-a:text-emerald-500 prose-img:rounded-xl prose-strong:text-slate-900"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {/* Markdown & HTML Content */}
+          <div className="prose prose-slate prose-lg max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-p:text-slate-600 prose-a:text-emerald-600 hover:prose-a:text-emerald-500 prose-img:rounded-xl prose-strong:text-slate-900">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+              {post.content}
+            </ReactMarkdown>
+          </div>
           
           {/* Tags Section */}
           {post.tags && post.tags.length > 0 && (
