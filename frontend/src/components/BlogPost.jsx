@@ -169,7 +169,7 @@ export default function BlogPost() {
         }
       `}</style>
       {/* Hero Image Section */}
-      <div className="w-full h-[400px] relative mb-12">
+      <div className="w-full h-[400px] relative mb-6 sm:mb-12">
         <img 
           src={post.image} 
           alt={post.title} 
@@ -178,7 +178,7 @@ export default function BlogPost() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
         
         <div className="absolute bottom-0 left-0 w-full p-4 sm:p-8 max-w-7xl mx-auto">
-          <div className="flex justify-between items-start mb-6">
+          <div className="hidden sm:flex justify-between items-start mb-6">
             <Link to="/blog" className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full">
               <ArrowLeft className="w-4 h-4" /> Back to Blog
             </Link>
@@ -220,6 +220,21 @@ export default function BlogPost() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Mobile Navigation & Actions */}
+        <div className="flex sm:hidden justify-between items-center mb-6">
+          <Link to="/blog" className="inline-flex items-center gap-1.5 text-slate-600 hover:text-emerald-600 text-xs font-semibold bg-white border border-slate-200 px-3 py-2 rounded-full shadow-sm transition-colors">
+            <ArrowLeft className="w-3.5 h-3.5" /> Back
+          </Link>
+          <div className="flex gap-2">
+            <button onClick={handleEdit} className="inline-flex items-center gap-1.5 text-slate-600 hover:text-emerald-600 text-xs font-semibold bg-white border border-slate-200 px-3 py-2 rounded-full shadow-sm transition-colors">
+              <Edit className="w-3.5 h-3.5" /> Edit
+            </button>
+            <button onClick={handleDelete} className="inline-flex items-center gap-1.5 text-red-500 hover:text-red-600 text-xs font-semibold bg-white border border-slate-200 px-3 py-2 rounded-full shadow-sm transition-colors">
+              <Trash2 className="w-3.5 h-3.5" /> Delete
+            </button>
+          </div>
+        </div>
+
         {/* Main Content Card */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 sm:p-12">
           {/* Excerpt */}
