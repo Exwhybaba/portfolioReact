@@ -71,7 +71,7 @@ export default function TitleMe() {
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-emerald-300 via-sky-200 to-cyan-300 bg-clip-text text-transparent">
-          Seye Daniel Oyelayo
+          Seye Oyelayo
         </h1>
         <p className="mt-4 text-lg sm:text-2xl text-sky-200 font-light mb-8">
           Data Scientist & ML Engineer
