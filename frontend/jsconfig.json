@@ -5,6 +5,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../backend/Post.js", "../backend/posts.js", "../backend/server.js"],
   "exclude": ["node_modules", "dist"]
 }
