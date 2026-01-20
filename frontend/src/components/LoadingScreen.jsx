@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function LoadingScreen({ onComplete }) {
   const [isExiting, setIsExiting] = useState(false);
-  const text = "SEYE DANIEL OYELAYO";
+  const text = "SEYE OYELAYO";
 
   useEffect(() => {
     // Display for at least 2.5 seconds
