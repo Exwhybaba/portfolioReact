@@ -66,7 +66,7 @@ const projectIcons = {
                 )}
 
                 {description && (
-                    <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed">
+                    <CardDescription className="mt-4 text-sm text-slate-600 leading-relaxed whitespace-pre-line">
                         {description}
                     </CardDescription>
                 )}

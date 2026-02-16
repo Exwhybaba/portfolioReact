@@ -1,8 +1,33 @@
 import ProjectCard from "./ProjectCard";
 
 const projects = [
+
   {
     id: 1,
+    title: "FoodKet Dashboard",
+    image: "./public/images/foodket_dashboard.png",
+    description:
+      `Foodket Enterprise – B2B Corporate Food Management SaaS. A full-stack MERN application designed to digitize office cafeterias and employee food allowances.
+
+Architecture: Built a secure multi-tenant architecture ensuring strict data isolation between organizations.
+Core Features: Implemented a closed-loop digital wallet system with daily spending limits, monthly allowances, and real-time transaction tracking.
+Advanced Logic: Developed Geofencing capabilities (using the Haversine formula) to restrict transactions to specific physical vendor locations.
+Monetization: Integrated Paystack for automated subscription billing, seat management, and pro-rated top-ups.
+Security: Implemented a secure JWT-based authentication system with role-based access control.`,
+    actions: [
+      { label: "MongoDB", variant: "ghost"},
+      { label: "Express.js", variant: "ghost"},
+      { label: "React", variant: "ghost"},
+      { label: "Node.js", variant: "ghost"},
+      { label: "JWT Authentication", variant: "ghost"},
+      { label: "Tailwind CSS", variant: "ghost"},
+      
+      { label: "View Project", onClick: () => window.open("https://www.foodket.site/") },
+    ],
+  },
+
+  {
+    id: 2,
     title: "FeedEyes",
     image: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=800&q=80",
     description:
@@ -16,7 +41,7 @@ const projects = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Crop Recommendation System",
     image: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80",
     description:
@@ -32,7 +57,7 @@ const projects = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "Crop Monitoring System",
     image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
     description:
@@ -48,7 +73,7 @@ const projects = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Customer Churn Prediction",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     description:
@@ -62,7 +87,7 @@ const projects = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: "Malaria Parasite Detector",
     image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80",
     description:
@@ -78,7 +103,7 @@ const projects = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Bank Customer Transaction Dashboard",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     description:
