@@ -5,7 +5,7 @@ const projects = [
   {
     id: 1,
     title: "FoodKet Dashboard",
-    image: "./public/images/foodket_dashboard.png",
+    image: "/images/foodket_dashboard.png",
     description:
       `Foodket Enterprise – B2B Corporate Food Management SaaS. A full-stack MERN application designed to digitize office cafeterias and employee food allowances.
 
